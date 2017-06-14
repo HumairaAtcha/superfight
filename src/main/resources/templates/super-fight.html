@@ -70,7 +70,7 @@
 
 	}
 
-	.location-list, .battle-list{
+	.location-list, .battle-list, .teams-list{
 	    display: none;
 	}
   </style>
@@ -116,11 +116,13 @@
 
   <div class="location-list" id="location-list">
     <th:block th:each="location : ${locations}">
-      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-        <p th:text="'Name of Location: ' + ${location.name}" />
+      <div class="super-person-parent" th:onclick="'dropDown(\'' + ${location.id} + '\');'">
+        <p class="super-person-text" th:text="${location.name}" />
       </div>
-      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-        <p th:text="'Name of City: ' + ${location.city}" />
+      <div th:id="${location.id}" class="hero-attributes">
+        <div class="super-person-child">
+          <p class="super-person-text" th:text="'City: ' + ${location.city}" />
+        </div>
       </div>
     </th:block>
   </div>
@@ -140,14 +142,16 @@
   </div>
 
   <div class="teams-list" id="teams-list">
-  <th:block th:each="superTeam : ${superTeams}">
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super team:' + ${superTeam.teamName}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Wins: ' + ${superTeam.numberOfWins}" />
-    </div>
-  </th:block>
+    <th:block th:each="superTeam : ${superTeams}">
+      <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superTeam.id} + '\');'">
+        <p class="super-person-text" th:text="${superTeam.teamname}" />
+      </div>
+      <div th:id="${superTeam.id}" class="hero-attributes">
+        <div class="super-person-child">
+          <p class="super-person-text" th:text="${superTeam.numberOfWins} + ' wins'" />
+        </div>
+      </div>
+    </th:block>
   </div>
 
 </body>
