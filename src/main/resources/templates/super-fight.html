@@ -69,17 +69,21 @@
 		font-size: 14pt;
 
 	}
+
+	.location-list, .battle-list{
+	    display: none;
+	}
   </style>
 
   <div class="header-wrapper">
     <div class="menu-container">
-      <div class="menu-item">
+      <div class="menu-item" onclick="showHeroes()">
         <h1 class="menu-text" id="heroes-menu">Heroes</h1>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" onclick="showLocations()">
         <h1 class="menu-text" id="locations-menu">Locations</h1>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" onclick="showBattles()">
         <h1 class="menu-text" id="battles-menu">Battles</h1>
       </div>
       <div class="menu-item">
@@ -88,46 +92,53 @@
     </div>
   </div>
 
-  <th:block th:each="superPerson : ${superPersons}">
-    <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superPerson.id} + '\');'">
-      <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
-    </div>
-    <div th:id="${superPerson.id}" class="hero-attributes">
-      <div class="super-person-child">
-        <p class="super-person-text" th:text="'Health: ' + ${superPerson.health}" />
+  <div class="heroes-list" id="heroes-list">
+    <th:block th:each="superPerson : ${superPersons}">
+      <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superPerson.id} + '\');'">
+        <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
       </div>
-      <div class="super-person-child">
-        <p class="super-person-text" th:text="'Strength: ' + ${superPerson.strength}" />
+      <div th:id="${superPerson.id}" class="hero-attributes">
+        <div class="super-person-child">
+          <p class="super-person-text" th:text="'Health: ' + ${superPerson.health}" />
+        </div>
+        <div class="super-person-child">
+          <p class="super-person-text" th:text="'Strength: ' + ${superPerson.strength}" />
+        </div>
+        <div class="super-person-child">
+          <p class="super-person-text" th:text="'Armour Rating: ' + ${superPerson.armour_rating}" />
+        </div>
+        <div class="super-person-child">
+          <p  class="super-person-text" th:text="'Super Move: ' + ${superPerson.special_move}" />
+        </div>
       </div>
-      <div class="super-person-child">
-        <p class="super-person-text" th:text="'Armour Rating: ' + ${superPerson.armour_rating}" />
-      </div>
-      <div class="super-person-child">
-        <p  class="super-person-text" th:text="'Super Move: ' + ${superPerson.special_move}" />
-      </div>
-    </div>
-  </th:block>
+    </th:block>
+  </div>
 
-  <th:block th:each="location : ${locations}">
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Name of Location: ' + ${location.name}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Name of City: ' + ${location.city}" />
-    </div>
-  </th:block>
+  <div class="location-list" id="location-list">
+    <th:block th:each="location : ${locations}">
+      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+        <p th:text="'Name of Location: ' + ${location.name}" />
+      </div>
+      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+        <p th:text="'Name of City: ' + ${location.city}" />
+      </div>
+    </th:block>
+  </div>
 
-  <th:block th:each="battle : ${battles}">
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super person 1:' + ${battle.super_person_1}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super person 2: ' + ${battle.super_person_2}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Winner: ' + ${battle.winner}" />
-    </div>
-  </th:block>
+  <div class="battle-list" id="battles-list">
+    <th:block th:each="battle : ${battles}">
+      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+        <p th:text="'Super person 1:' + ${battle.super_person_1}" />
+      </div>
+      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+        <p th:text="'Super person 2: ' + ${battle.super_person_2}" />
+      </div>
+      <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+        <p th:text="'Winner: ' + ${battle.winner}" />
+      </div>
+    </th:block>
+  </div>
+
 
 </body>
 <script>
@@ -142,6 +153,24 @@
     	    e.style.margin = "0 0 0 70px"
     	    e.style.transition = "0.3s all ease";
     	}
+	}
+
+	function showHeroes() {
+	    document.getElementById('heroes-list').style.display = 'block';
+	    document.getElementById('location-list').style.display = 'none';
+	    document.getElementById('battle-list').style.display = 'none';
+	}
+
+	function showLocations() {
+	    document.getElementById('heroes-list').style.display = 'none';
+	    document.getElementById('location-list').style.display = 'block';
+	    document.getElementById('battle-list').style.display = 'none';
+	}
+
+	function showBattles() {
+	    document.getElementById('heroes-list').style.display = 'none';
+	    document.getElementById('location-list').style.display = 'none';
+	    document.getElementById('battle-list').style.display = 'block';
 	}
 </script>
 </html>
