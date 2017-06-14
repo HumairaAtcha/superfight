@@ -18,7 +18,11 @@ public class SuperPersonService {
   private JdbcTemplate jdbcTemplate;
 
   public List<SuperPerson> getSuperPersons(String orderBy) {
-    String query = "SELECT * FROM super_person ORDER BY " + orderBy + " ASC";
+    String query = "SELECT COUNT(*) number_of_wins, spw.name, spw.health health, spw.strength strength, spw.armour_rating armour_rating, spw.special_move special_move, spw.id id\n"
+        + "FROM battle b\n"
+        + "\tJOIN super_person spw ON b.winner_id = spw.id\n"
+        + "GROUP BY name, health, strength, armour_rating, special_move, id\n"
+        + "ORDER BY " + orderBy + " ASC";
     List<SuperPerson> result = jdbcTemplate.query(query, new RowMapper<SuperPerson>(){
 
       @Override
@@ -31,6 +35,7 @@ public class SuperPersonService {
         superPerson.setStrength(rs.getInt("strength"));
         superPerson.setArmour_rating(rs.getInt("armour_rating"));
         superPerson.setSpecial_move(rs.getString("special_move"));
+        superPerson.setWins(rs.getInt("number_of_wins"));
         return superPerson;
       }
     });
