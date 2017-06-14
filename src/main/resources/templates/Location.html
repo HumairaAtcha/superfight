@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>LET THE BATTLE BEGIN</title>
+</head>
+<body>
+<style type="text/css">
+
+      body {
+        font-family: Helvetica;
+        margin: 0;
+      }
+
+      .super-person-parent {
+        transform: skew(-20deg);
+        background: lightgrey;
+        width: 240px;
+        height: 24px;
+        font-size: 13pt;
+      }
+
+    	.super-person-child{
+    		transform: skew(-20deg);
+    		background: lightgrey;
+    		width: 240px;
+    		height: 20px;
+    	}
+
+    	.super-person-text{
+    		transform: skew(20deg);
+    		margin-left: 12px;
+    	}
+
+    	.hero-attributes{
+    		transition: 0.3s all ease;
+    		display: none;
+    		margin-left: 90px;
+    	}
+
+    	.header-wrapper{
+		width: 100%;
+		height: 100px;
+		background-color: lime;
+		margin: 0;
+	}
+
+	.menu-container{
+		padding-right: 20px;
+		height: 100px;
+		margin: 0;
+		float: right;
+	}
+
+	.menu-item{
+		display: inline-block;
+		background-color: lightgrey;
+		width: 140px;
+		height: 36px;
+		margin: 32px 6px;
+		transform: skew(-20deg);
+	}
+
+	.menu-text{
+		transform: skew(20deg);
+		margin: 0;
+		padding-top: 6px;
+		text-align: center;
+		font-size: 14pt;
+
+	}
+
+	.location-list, .battle-list, .teams-list{
+	    display: none;
+	}
+  </style>
+
+<div class="header-wrapper">
+    <div class="menu-container">
+        <div class="menu-item">
+            <h1 class="menu-text" id="heroes-menu"><a href="/super-poeple.html">Heroes</a></h1>
+        </div>
+        <div class="menu-item">
+            <h1 class="menu-text" id="locations-menu"><a href="/Location.html">Locations</a></h1>
+        </div>
+        <div class="menu-item">
+            <h1 class="menu-text" id="battles-menu"><a href="/battles.html">Battles</a></h1>
+        </div>
+        <div class="menu-item">
+            <h1 class="menu-text" id="wins-menu"><a href="/teams.html">Team Wins</a></h1>
+        </div>
+    </div>
+</div>
+
+<div class="location-list" id="location-list">
+    <th:block th:each="location : ${locations}">
+        <div class="super-person-parent" th:onclick="'dropDown(\'' + ${location.id} + '\');'">
+            <p class="super-person-text" th:text="${location.name}" />
+        </div>
+        <div th:id="${location.id}" class="hero-attributes">
+            <div class="super-person-child">
+                <p class="super-person-text" th:text="'City: ' + ${location.city}" />
+            </div>
+        </div>
+    </th:block>
+</div>
+
+</body>
+<script>
+	function dropDown(id) {
+		var e = document.getElementById(id);
+    	if(e.style.display == null || e.style.display == "none") {
+      	  	e.style.display = "block";
+      	  	e.style.margin = "0 0 0 100px";
+      	  	e.style.transition = "0.3s all ease";
+    	} else {
+    	    e.style.display = "none";
+    	    e.style.margin = "0 0 0 70px"
+    	    e.style.transition = "0.3s all ease";
+    	}
+	}
+</script>
+</html>
