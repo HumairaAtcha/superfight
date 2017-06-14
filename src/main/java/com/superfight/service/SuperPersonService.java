@@ -38,7 +38,7 @@ public class SuperPersonService {
   }
 
   public List<Location> getLocation(String orderBy) {
-    String query = "SELECT * FROM location" + orderBy + "ASC";
+    String query = "SELECT * FROM location ORDER BY " + orderBy + " ASC";
     List<Location> result = jdbcTemplate.query(query, new RowMapper<Location>(){
 
       @Override

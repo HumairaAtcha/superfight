@@ -23,14 +23,14 @@
     </div>
 </div>
 
-<div class="teams-list" id="teams-list">
-    <th:block th:each="superTeam : ${superTeams}">
-        <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superTeam.id} + '\');'">
-            <p class="super-person-text" th:text="${superTeam.teamName}" />
+<div class="location-list" id="location-list">
+    <th:block th:each="location : ${locations}">
+        <div class="super-person-parent" th:onclick="'dropDown(\'' + ${location.id} + '\');'">
+            <p class="super-person-text" th:text="${location.name}" />
         </div>
-        <div th:id="${superTeam.id}" class="hero-attributes">
+        <div th:id="${location.id}" class="hero-attributes">
             <div class="super-person-child">
-                <p class="super-person-text" th:text="${superTeam.numberOfWins} + ' wins'" />
+                <p class="super-person-text" th:text="'City: ' + ${location.city}" />
             </div>
         </div>
     </th:block>

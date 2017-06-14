@@ -13,26 +13,26 @@ public class SuperController {
   private SuperPersonService superPersonService;
 
   @RequestMapping("/super-people")
-  public String getSuperPeople(ModelMap model, @RequestParam("orderBy") String orderBy) {
+  public String getSuperPeople(ModelMap model, @RequestParam(value = "orderBy", required=false) String orderBy) {
 
     model.addAttribute("superPersons", superPersonService.getSuperPersons(orderBy));
     return "super-people";
   }
 
   @RequestMapping("/locations")
-  public String getLocations(ModelMap model, @RequestParam("orderBy") String orderBy) {
+  public String getLocations(ModelMap model, @RequestParam(value = "orderBy", required=false) String orderBy) {
     model.addAttribute("locations", superPersonService.getLocation(orderBy));
-    return "Location";
+    return "locations";
   }
 
   @RequestMapping("/battles")
-  public String getBattles(ModelMap model, @RequestParam("orderBy") String orderBy) {
+  public String getBattles(ModelMap model, @RequestParam(value = "orderBy", required=false) String orderBy) {
     model.addAttribute("battles", superPersonService.getBattles(orderBy));
     return "battles";
   }
 
   @RequestMapping("/teams")
-  public String getTeams(ModelMap model, @RequestParam("orderBy") String orderBy) {
+  public String getTeams(ModelMap model, @RequestParam(value = "orderBy", required=false) String orderBy) {
     model.addAttribute("superTeams", superPersonService.getSuperTeam(orderBy));
     return "teams";
   }
