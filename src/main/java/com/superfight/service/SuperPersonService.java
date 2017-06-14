@@ -17,8 +17,9 @@ public class SuperPersonService {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  public List<SuperPerson> getSuperPersons() {
-    List<SuperPerson> result = jdbcTemplate.query("SELECT * FROM super_person", new RowMapper<SuperPerson>(){
+  public List<SuperPerson> getSuperPersons(String orderBy) {
+    String query = "SELECT * FROM super_person ORDER BY " + orderBy + " ASC";
+    List<SuperPerson> result = jdbcTemplate.query(query, new RowMapper<SuperPerson>(){
 
       @Override
       public SuperPerson mapRow(ResultSet rs, int rowNum) throws SQLException {
