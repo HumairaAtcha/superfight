@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"></meta>
+  <title>LET THE BATTLE BEGIN</title>
+</head>
+<body>
+
+  <style type="text/css">
+
+  </style>
+
+  <th:block th:each="superPerson : ${result}">
+    <div class= style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super Person: ' + ${superPerson.name}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super Person: ' + ${superPerson.health}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super Person: ' + ${superPerson.strength}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super Person: ' + ${superPerson.armour_rating}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super Person: ' + ${superPerson.special_move}" />
+    </div>
+  </th:block>
+
+</body>
+</html>

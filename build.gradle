@@ -24,7 +24,12 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework:spring-jdbc')
 	runtime('mysql:mysql-connector-java')
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+	compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.1'
+
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
