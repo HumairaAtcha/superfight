@@ -1,6 +1,7 @@
 body {
   font-family: Helvetica;
   margin: 0;
+  background-image: url('/NickFury.png');
 }
 
 .super-person-parent {
@@ -61,6 +62,11 @@ body {
 
 }
 
-.location-list, .battle-list, .teams-list{
-  display: none;
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.content-block{
+    margin-right: 30px;
 }

@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="location-list" id="location-list">
+<div class="location-list content-block" id="location-list">
     <th:block th:each="location : ${locations}">
         <div class="super-person-parent" th:onclick="'dropDown(\'' + ${location.id} + '\');'">
             <p class="super-person-text" th:text="${location.name}" />

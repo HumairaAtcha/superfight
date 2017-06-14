@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="teams-list" id="teams-list">
+<div class="teams-list content-block" id="teams-list">
     <th:block th:each="superTeam : ${superTeams}">
         <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superTeam.id} + '\');'">
             <p class="super-person-text" th:text="${superTeam.teamName}" />

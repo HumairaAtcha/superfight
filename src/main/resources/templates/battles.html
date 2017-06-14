@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div class="heroes-list" id="heroes-list">
+<div class="heroes-list content-block" id="heroes-list">
     <th:block th:each="superPerson : ${superPersons}">
         <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superPerson.id} + '\');'">
             <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
