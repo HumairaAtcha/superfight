@@ -6,21 +6,23 @@
 </head>
 <body>
   <style type="text/css">
-      .super-person-parent{
-      		transform: skew(-20deg);
-      		background: lightgrey;
-      		width: 200px;
-      		height: 24px;
-    	}
 
-    	.parent-text{
-    		padding-top: 2px;
-    	}
+      body {
+        font-family: Helvetica;
+      }
+
+      .super-person-parent {
+        transform: skew(-20deg);
+        background: lightgrey;
+        width: 240px;
+        height: 24px;
+        font-size: 13pt;
+      }
 
     	.super-person-child{
     		transform: skew(-20deg);
     		background: lightgrey;
-    		width: 200px;
+    		width: 240px;
     		height: 20px;
     	}
 
@@ -32,16 +34,16 @@
     	.hero-attributes{
     		transition: 0.3s all ease;
     		display: none;
-    		margin-left: 70px;
+    		margin-left: 90px;
     	}
   </style>
 
-  <th:block th:each="superPerson : ${result}">
-    <div class="super-person-parent" onclick="dropDown('hero-attribute-${superPerson.id}')">
+  <th:block th:each="superPerson : ${superPersons}">
+    <div class="super-person-parent" th:onclick="'dropDown(\'' + ${superPerson.id} + '\');'">
       <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
       <!--<p class="super-person-text parent-text">Black Panther</p>-->
     </div>
-    <div id="hero-attribute-${superPerson.id}" class="hero-attributes">
+    <div th:id="${superPerson.id}" class="hero-attributes">
       <div class="super-person-child">
         <p class="super-person-text" th:text="'Health: ' + ${superPerson.health}" />
         <!--<p class="super-person-text">200</p>-->
@@ -61,26 +63,26 @@
     </div>
   </th:block>
 
-  <th:block th:each="location : ${locations}">
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Name of Location: ' + ${location.name}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Name of City: ' + ${location.city}" />
-    </div>
-  </th:block>
+  <!--<th:block th:each="location : ${locations}">-->
+    <!--<div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">-->
+      <!--<p th:text="'Name of Location: ' + ${location.name}" />-->
+    <!--</div>-->
+    <!--<div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">-->
+      <!--<p th:text="'Name of City: ' + ${location.city}" />-->
+    <!--</div>-->
+  <!--</th:block>-->
 
-  <th:block th:each="battle : ${battles}">
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super person 1:' + ${battle.super_person_1}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super person 2: ' + ${battle.super_person_2}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Winner: ' + ${battle.winner}" />
-    </div>
-  </th:block>
+  <!--<th:block th:each="battle : ${battles}">-->
+    <!--<div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">-->
+      <!--<p th:text="'Super person 1:' + ${battle.super_person_1}" />-->
+    <!--</div>-->
+    <!--<div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">-->
+      <!--<p th:text="'Super person 2: ' + ${battle.super_person_2}" />-->
+    <!--</div>-->
+    <!--<div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">-->
+      <!--<p th:text="'Winner: ' + ${battle.winner}" />-->
+    <!--</div>-->
+  <!--</th:block>-->
 
 </body>
 <script>

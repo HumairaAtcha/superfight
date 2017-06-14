@@ -23,6 +23,7 @@ public class SuperPersonService {
       public SuperPerson mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         SuperPerson superPerson = new SuperPerson();
+        superPerson.setId(rs.getInt("id"));
         superPerson.setName(rs.getString("name"));
         superPerson.setHealth(rs.getInt("health"));
         superPerson.setStrength(rs.getInt("strength"));
@@ -41,6 +42,7 @@ public class SuperPersonService {
       public Location mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         Location location = new Location();
+        location.setId(rs.getInt("id"));
         location.setName(rs.getString("name"));
         location.setCity(rs.getString("city"));
         return location;
