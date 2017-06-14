@@ -3,6 +3,7 @@ package com.superfight.service;
 import com.superfight.model.Battle;
 import com.superfight.model.Location;
 import com.superfight.model.SuperPerson;
+import com.superfight.model.SuperTeam;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -72,5 +73,26 @@ public class SuperPersonService {
     return result;
   }
 
+  public List<SuperTeam> getSuperTeam() {
+    List<SuperTeam> result = jdbcTemplate.query("SELECT COUNT(*) number_of_wins, st.name Team "
+        + "FROM battle b "
+        + "INNER JOIN super_person spw ON b.winner_id = spw.id "
+        + "INNER JOIN super_team_super_person stsp ON b.winner_id = stsp.super_person_id "
+        + "INNER JOIN super_team st ON stsp.super_team_id = st.id "
+        + "GROUP BY st.name "
+        + "ORDER BY number_of_wins DESC;", new RowMapper<SuperTeam>(){
+
+      @Override
+      public SuperTeam mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+        SuperTeam superTeam = new SuperTeam();
+        superTeam.setNumberOfWins(rs.getInt("number_of_wins"));
+        superTeam.setTeamName(rs.getString("Team"));
+
+        return superTeam;
+      }
+    });
+    return result;
+  }
 
 }
