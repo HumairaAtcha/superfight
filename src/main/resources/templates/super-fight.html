@@ -37,11 +37,11 @@
   </style>
 
   <th:block th:each="superPerson : ${result}">
-    <div class="super-person-parent" onclick="dropDown()">
+    <div class="super-person-parent" onclick="dropDown('hero-attribute-${superPerson.id}')">
       <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
       <!--<p class="super-person-text parent-text">Black Panther</p>-->
     </div>
-    <div id="hero-attribute" class="hero-attributes">
+    <div id="hero-attribute-${superPerson.id}" class="hero-attributes">
       <div class="super-person-child">
         <p class="super-person-text" th:text="'Health: ' + ${superPerson.health}" />
         <!--<p class="super-person-text">200</p>-->
@@ -62,8 +62,8 @@
   </th:block>
 </body>
 <script>
-	function dropDown() {
-		var e = document.getElementById('hero-attribute');
+	function dropDown(id) {
+		var e = document.getElementById(id);
     	if(e.style.display == null || e.style.display == "none") {
       	  	e.style.display = "block";
       	  	e.style.margin = "0 0 0 100px";
