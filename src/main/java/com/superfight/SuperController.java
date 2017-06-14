@@ -17,6 +17,7 @@ public class SuperController {
     model.addAttribute("superPersons", superPersonService.getSuperPersons());
     model.addAttribute("locations", superPersonService.getLocation());
     model.addAttribute("battles", superPersonService.getBattles());
+    model.addAttribute("superTeams", superPersonService.getSuperTeam());
     return "super-fight";
   }
 

@@ -140,6 +140,15 @@
   </div>
 
 
+  <th:block th:each="superTeam : ${superTeams}">
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super team:' + ${superTeam.teamName}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Wins: ' + ${superTeam.numberOfWins}" />
+    </div>
+  </th:block>
+
 </body>
 <script>
 	function dropDown(id) {
