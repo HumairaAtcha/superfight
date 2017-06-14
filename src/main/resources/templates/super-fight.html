@@ -10,23 +10,43 @@
 
   </style>
 
-  <th:block th:each="superPerson : ${result}">
-    <div class= style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+  <th:block th:each="superPerson : ${superPersons}">
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
       <p th:text="'Super Person: ' + ${superPerson.name}" />
     </div>
     <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.health}" />
+      <p th:text="'Super Person\'s Health: ' + ${superPerson.health}" />
     </div>
     <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.strength}" />
+      <p th:text="'Super Person\'s Strength: ' + ${superPerson.strength}" />
     </div>
     <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.armour_rating}" />
+      <p th:text="'Super Person\'s Armour Rating: ' + ${superPerson.armour_rating}" />
     </div>
     <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.special_move}" />
+      <p th:text="'Super Person\'s Special Move: ' + ${superPerson.special_move}" />
     </div>
   </th:block>
 
+  <th:block th:each="location : ${locations}">
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Name of Location: ' + ${location.name}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Name of City: ' + ${location.city}" />
+    </div>
+  </th:block>
+
+  <th:block th:each="battle : ${battles}">
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super person 1:' + ${battle.super_person_1}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Super person 2: ' + ${battle.super_person_2}" />
+    </div>
+    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
+      <p th:text="'Winner: ' + ${battle.winner}" />
+    </div>
+  </th:block>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.superfight;
+package com.superfight.model;
 
 public class SuperPerson {
 
