@@ -5,28 +5,74 @@
   <title>LET THE BATTLE BEGIN</title>
 </head>
 <body>
-
   <style type="text/css">
+      .super-person-parent{
+      		transform: skew(-20deg);
+      		background: lightgrey;
+      		width: 200px;
+      		height: 24px;
+    	}
 
+    	.parent-text{
+    		padding-top: 2px;
+    	}
+
+    	.super-person-child{
+    		transform: skew(-20deg);
+    		background: lightgrey;
+    		width: 200px;
+    		height: 20px;
+    	}
+
+    	.super-person-text{
+    		transform: skew(20deg);
+    		margin-left: 12px;
+    	}
+
+    	.hero-attributes{
+    		transition: 0.3s all ease;
+    		display: none;
+    		margin-left: 70px;
+    	}
   </style>
 
   <th:block th:each="superPerson : ${result}">
-    <div class= style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.name}" />
+    <div class="super-person-parent" onclick="dropDown()">
+      <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.name}" />
+      <!--<p class="super-person-text parent-text">Black Panther</p>-->
     </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.health}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.strength}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.armour_rating}" />
-    </div>
-    <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
-      <p th:text="'Super Person: ' + ${superPerson.special_move}" />
+    <div id="hero-attribute" class="hero-attributes">
+      <div class="super-person-child">
+        <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.health}" />
+        <!--<p class="super-person-text">200</p>-->
+      </div>
+      <div class="super-person-child">
+        <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.strength}" />
+        <!--<p class="super-person-text">20</p>-->
+      </div>
+      <div class="super-person-child">
+        <p class="super-person-text" th:text="'Super Person: ' + ${superPerson.armour_rating}" />
+        <!--<p class="super-person-text">20</p>-->
+      </div>
+      <div class="super-person-child">
+        <p  class="super-person-text" th:text="'Super Person: ' + ${superPerson.special_move}" />
+        <!--<p class="super-person-text">Ninja Thingy</p>-->
+      </div>
     </div>
   </th:block>
-
 </body>
+<script>
+	function dropDown() {
+		var e = document.getElementById('hero-attribute');
+    	if(e.style.display == null || e.style.display == "none") {
+      	  	e.style.display = "block";
+      	  	e.style.margin = "0 0 0 100px";
+      	  	e.style.transition = "0.3s all ease";
+    	} else {
+    	    e.style.display = "none";
+    	    e.style.margin = "0 0 0 70px"
+    	    e.style.transition = "0.3s all ease";
+    	}
+	}
+</script>
 </html>
