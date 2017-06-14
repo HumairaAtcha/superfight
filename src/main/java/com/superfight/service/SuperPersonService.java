@@ -37,8 +37,9 @@ public class SuperPersonService {
     return result;
   }
 
-  public List<Location> getLocation() {
-    List<Location> result = jdbcTemplate.query("SELECT * FROM location", new RowMapper<Location>(){
+  public List<Location> getLocation(String orderBy) {
+    String query = "SELECT * FROM location" + orderBy + "ASC";
+    List<Location> result = jdbcTemplate.query(query, new RowMapper<Location>(){
 
       @Override
       public Location mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -53,13 +54,14 @@ public class SuperPersonService {
     return result;
   }
 
-  public List<Battle> getBattles() {
-    List<Battle> result = jdbcTemplate.query("SELECT sp1.name Superhero1, sp2.name Superhero2, spw.name winner  "
+  public List<Battle> getBattles(String orderBy) {
+    String query = "SELECT sp1.name Superhero1, sp2.name Superhero2, spw.name winner  "
         + "FROM battle b  "
         + "INNER JOIN super_person sp1 ON b.super_person_one_id = sp1.id  "
         + "INNER JOIN super_person sp2 ON b.super_person_two_id = sp2.id  "
         + "INNER JOIN super_person spw ON b.winner_id = spw.id  "
-        + "ORDER BY spw.name DESC", new RowMapper<Battle>(){
+        + "ORDER BY " + orderBy + " DESC";
+    List<Battle> result = jdbcTemplate.query(query, new RowMapper<Battle>(){
 
       @Override
       public Battle mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -74,14 +76,15 @@ public class SuperPersonService {
     return result;
   }
 
-  public List<SuperTeam> getSuperTeam() {
-    List<SuperTeam> result = jdbcTemplate.query("SELECT COUNT(*) number_of_wins, st.name Team "
+  public List<SuperTeam> getSuperTeam(String orderBy) {
+    String query = "SELECT COUNT(*) number_of_wins, st.name Team "
         + "FROM battle b "
         + "INNER JOIN super_person spw ON b.winner_id = spw.id "
         + "INNER JOIN super_team_super_person stsp ON b.winner_id = stsp.super_person_id "
         + "INNER JOIN super_team st ON stsp.super_team_id = st.id "
         + "GROUP BY st.name "
-        + "ORDER BY number_of_wins DESC;", new RowMapper<SuperTeam>(){
+        + "ORDER BY " + orderBy + " DESC";
+    List<SuperTeam> result = jdbcTemplate.query(query, new RowMapper<SuperTeam>(){
 
       @Override
       public SuperTeam mapRow(ResultSet rs, int rowNum) throws SQLException {
