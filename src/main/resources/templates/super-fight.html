@@ -86,7 +86,7 @@
       <div class="menu-item" onclick="showBattles()">
         <h1 class="menu-text" id="battles-menu">Battles</h1>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" onclick="showTeams()">
         <h1 class="menu-text" id="wins-menu">Team Wins</h1>
       </div>
     </div>
@@ -139,7 +139,7 @@
     </th:block>
   </div>
 
-
+  <div class="teams-list" id="teams-list">
   <th:block th:each="superTeam : ${superTeams}">
     <div style="transform: skew(-20deg); background: lightgrey; width: 200px; height: 20px;">
       <p th:text="'Super team:' + ${superTeam.teamName}" />
@@ -148,6 +148,7 @@
       <p th:text="'Wins: ' + ${superTeam.numberOfWins}" />
     </div>
   </th:block>
+  </div>
 
 </body>
 <script>
@@ -168,18 +169,28 @@
 	    document.getElementById('heroes-list').style.display = 'block';
 	    document.getElementById('location-list').style.display = 'none';
 	    document.getElementById('battle-list').style.display = 'none';
+	    document.getElementById('teams-list').style.display = 'none';
 	}
 
 	function showLocations() {
 	    document.getElementById('heroes-list').style.display = 'none';
 	    document.getElementById('location-list').style.display = 'block';
 	    document.getElementById('battle-list').style.display = 'none';
+	    document.getElementById('teams-list').style.display = 'none';
 	}
 
 	function showBattles() {
 	    document.getElementById('heroes-list').style.display = 'none';
 	    document.getElementById('location-list').style.display = 'none';
 	    document.getElementById('battle-list').style.display = 'block';
+	    document.getElementById('teams-list').style.display = 'none';
+	}
+
+	function showTeams() {
+	    document.getElementById('heroes-list').style.display = 'none';
+	    document.getElementById('location-list').style.display = 'none';
+	    document.getElementById('battle-list').style.display = 'none';
+	    document.getElementById('teams-list').style.display = 'block';
 	}
 </script>
 </html>
