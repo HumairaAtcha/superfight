@@ -60,11 +60,12 @@ public class SuperPersonService {
   }
 
   public List<Battle> getBattles(String orderBy) {
-    String query = "SELECT sp1.name Superhero1, sp2.name Superhero2, spw.name winner  "
+    String query = "SELECT sp1.name Superhero1, sp2.name Superhero2, spw.name winner, b.id id, l.name location  "
         + "FROM battle b  "
         + "INNER JOIN super_person sp1 ON b.super_person_one_id = sp1.id  "
         + "INNER JOIN super_person sp2 ON b.super_person_two_id = sp2.id  "
         + "INNER JOIN super_person spw ON b.winner_id = spw.id  "
+        + "INNER JOIN location l ON b.location_id = l.id "
         + "ORDER BY " + orderBy + " DESC";
     List<Battle> result = jdbcTemplate.query(query, new RowMapper<Battle>(){
 
@@ -72,8 +73,10 @@ public class SuperPersonService {
       public Battle mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         Battle battle = new Battle();
+        battle.setId(rs.getInt("id"));
         battle.setSuper_person_1(rs.getString("Superhero1"));
         battle.setSuper_person_2(rs.getString("Superhero2"));
+        battle.setLocation(rs.getString("location"));
         battle.setWinner(rs.getString("winner"));
         return battle;
       }
@@ -82,12 +85,12 @@ public class SuperPersonService {
   }
 
   public List<SuperTeam> getSuperTeam(String orderBy) {
-    String query = "SELECT COUNT(*) number_of_wins, st.name Team "
+    String query = "SELECT COUNT(*) number_of_wins, st.name Team, st.id id "
         + "FROM battle b "
         + "INNER JOIN super_person spw ON b.winner_id = spw.id "
         + "INNER JOIN super_team_super_person stsp ON b.winner_id = stsp.super_person_id "
         + "INNER JOIN super_team st ON stsp.super_team_id = st.id "
-        + "GROUP BY st.name "
+        + "GROUP BY st.name, id "
         + "ORDER BY " + orderBy + " DESC";
     List<SuperTeam> result = jdbcTemplate.query(query, new RowMapper<SuperTeam>(){
 
@@ -95,6 +98,7 @@ public class SuperPersonService {
       public SuperTeam mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         SuperTeam superTeam = new SuperTeam();
+        superTeam.setId(rs.getInt("id"));
         superTeam.setNumberOfWins(rs.getInt("number_of_wins"));
         superTeam.setTeamName(rs.getString("Team"));
 

@@ -8,18 +8,18 @@
 <body>
 <div class="header-wrapper">
     <div class="menu-container">
-        <div class="menu-item">
-            <h1 class="menu-text" id="heroes-menu"><a th:href="@{'/super-people/'}">Heroes</a></h1>
-        </div>
-        <div class="menu-item">
-            <h1 class="menu-text" id="locations-menu"><a th:href="@{'/locations/'}">Locations</a></h1>
-        </div>
-        <div class="menu-item">
-            <h1 class="menu-text" id="battles-menu"><a th:href="@{'/battles/'}">Battles</a></h1>
-        </div>
-        <div class="menu-item">
-            <h1 class="menu-text" id="wins-menu"><a th:href="@{'/teams/'}">Team Wins</a></h1>
-        </div>
+        <a th:href="@{'/super-people/'}"><div class="menu-item">
+            <h1 class="menu-text" id="heroes-menu">Heroes</h1>
+        </div></a>
+        <a th:href="@{'/locations/'}"><div class="menu-item">
+            <h1 class="menu-text" id="locations-menu">Locations</h1>
+        </div></a>
+        <a th:href="@{'/battles/'}"><div class="menu-item">
+            <h1 class="menu-text" id="battles-menu">Battles</h1>
+        </div></a>
+        <a th:href="@{'/teams/'}"><div class="menu-item">
+            <h1 class="menu-text" id="wins-menu">Team Wins</h1>
+        </div></a>
     </div>
 </div>
 

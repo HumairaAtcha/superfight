@@ -1,4 +1,5 @@
 body {
+  color: white;
   font-family: Helvetica;
   margin: 0;
   background-image: url('/NickFury.png');
@@ -9,17 +10,19 @@ body {
 
 .super-person-parent {
   transform: skew(-20deg);
-  background: lightgrey;
+  background: #D90429;
   width: 240px;
   height: 24px;
   font-size: 13pt;
+  transition: 0.2s all ease;
 }
 
 .super-person-child{
   transform: skew(-20deg);
-  background: lightgrey;
+  background: #D90429;
   width: 240px;
   height: 20px;
+  transition: 0.3s all ease;
 }
 
 .super-person-text{
@@ -38,6 +41,12 @@ body {
   height: 100px;
   background-color: lightgrey;
   margin: 0;
+  opacity: 0.9;
+  transition: 0.3s all ease;
+}
+
+.header-wrapper:hover{
+  background: blue;
 }
 
 .menu-container{
@@ -54,6 +63,8 @@ body {
   height: 36px;
   margin: 32px 6px;
   transform: skew(-20deg);
+  opacity: 1 !important;
+  transition: 0.3s all ease;
 }
 
 .menu-text{
@@ -65,13 +76,13 @@ body {
 
 }
 
-a.link, a.active, a.visited{
-    color: black;
+a:active, a:link, a:hover, a:visited{
+    color: white;
     text-decoration: none;
 }
 
 .content-block{
-    margin-right: 30px;
+    margin-left: 30px;
 }
 
 img{
@@ -79,4 +90,17 @@ img{
     width: 100%;
     height: 100%;
     opactiy: 0.3;
+}
+
+.super-person-parent:hover{
+  margin-left: 20px;
+  background: hotpink;
+}
+
+.super-person-child:hover{
+  background: gold;
+}
+
+.menu-item:hover{
+  background: lime;
 }
